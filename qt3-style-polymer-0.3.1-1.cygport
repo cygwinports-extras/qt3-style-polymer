@@ -1,0 +1,20 @@
+inherit qt3
+
+DESCRIPTION="Qt3 port of KDE Plastik style"
+HOMEPAGE="http://static.int.pl/~mig21/dev/releases/polymer/"
+ORIG_PN="polymer"
+SRC_URI="http://static.int.pl/~mig21/dev/releases/${ORIG_PN}/${ORIG_PN}-${PV}.tar.bz2"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygconf
+	cygmake
+}
+
+src_install() {
+	cd ${B}
+	dobin config/*.exe
+	qt3pluginto styles
+	doqt3plugin style/*.dll
+}
