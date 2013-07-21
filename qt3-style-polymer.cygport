@@ -1,0 +1,25 @@
+inherit qt3
+
+NAME="qt3-style-polymer"
+VERSION=0.3.2
+RELEASE=1
+CATEGORY="X11"
+SUMMARY="Qt3 port of KDE Plastik style"
+HOMEPAGE="http://kde-look.org/content/show.php?content=21748"
+SRC_URI="http://kde-look.org/CONTENT/content-files/21748-polymer-${VERSION}.tar.bz2"
+SRC_DIR="polymer-${VERSION}"
+PATCH_URI="0.3.1-no-undefined.patch"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygconf
+	cygmake
+}
+
+src_install() {
+	cd ${B}
+	dobin config/*.exe
+	qt3pluginto styles
+	doqt3plugin style/*.dll
+}
